@@ -34,7 +34,7 @@ namespace ADO_Lesson1
 			// головний параметр - рядок підключення
 			_connection.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Admin\source\repos\BelialovOmar\ADO.NET\ADO_Lesson1\ADO-Lesson1\Database1.mdf;Integrated Security=True";
 		}
-		
+
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			try  // відкриваємо підключення
@@ -54,7 +54,7 @@ namespace ADO_Lesson1
 				this.Close();
 			}
 		}
-		
+
 		private void Window_Closed(object sender, EventArgs e)
 		{
 			if (_connection?.State == ConnectionState.Open)
@@ -68,7 +68,7 @@ namespace ADO_Lesson1
 		{
 			// команда - ресурс для передачі SQL запиту до СУБД
 			SqlCommand cmd = new();
-			
+
 			// Обов'язкові параметри команди:
 			cmd.Connection = _connection;  // відкрите підключення
 
@@ -93,6 +93,36 @@ namespace ADO_Lesson1
 			}
 			cmd.Dispose();  // команда - unmanaged, потрібно вивільняти ресурс
 		}
+		#endregion
+
+		#region ДЗ #1
+		private void FillDepartments_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				SqlCommand command = new SqlCommand("INSERT INTO Departments (Id, Name) VALUES " +
+										   "('D3C376E4-BCE3-4D85-ABA4-E3CF49612C94', N'IT отдел')," +
+										   "('131EF84B-F06E-494B-848F-BB4BC0604266', N'Бухгалтерия')," +
+										   "('8DCC3969-1D93-47A9-8B79-A30C738DB9B4', N'Служба безопасности')," +
+										   "('D2469412-0E4B-46F7-80EC-8C522364D099', N'Отдел кадров')," +
+										   "('1EF7268C-43A8-488C-B761-90982B31DF4E', N'Канцелярия')," +
+										   "('415B36D9-2D82-4A92-A313-48312F8E18C6', N'Отдел продаж')," +
+										   "('624B3BB5-0F2C-42B6-A416-099AAB799546', N'Юридическая служба')");
+				command.Connection = _connection;
+
+				command.ExecuteNonQuery();
+				MessageBox.Show("Fill OK");
+			}
+			catch (SqlException ex)
+			{
+				MessageBox.Show(
+					ex.Message,
+					"Fill error",
+					MessageBoxButton.OK,
+					MessageBoxImage.Stop);
+			}
+		}
+
 		#endregion
 	}
 }

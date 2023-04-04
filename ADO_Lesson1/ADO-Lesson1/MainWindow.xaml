@@ -74,12 +74,12 @@
                 </TextBlock>
             </Button>
             
-            <!--<Button x:Name="FillDepartments" Click="FillDepartments_Click"
+            <Button x:Name="FillDepartments" Click="FillDepartments_Click"
                     Grid.Column="1" Grid.Row="1">
                 <TextBlock TextAlignment="Center">
                     Fill<LineBreak/>Departments
                 </TextBlock>
-            </Button>-->
+            </Button>
             
         </Grid>
     </Grid>
