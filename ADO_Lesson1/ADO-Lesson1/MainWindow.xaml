@@ -48,5 +48,39 @@
                    x:Name="StatusConnection" FontSize="22" />
             
         </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                   Content="Install Database" HorizontalAlignment="Center"
+                   FontSize="26" FontWeight="DemiBold"/>
+            
+            <Button x:Name="CreateDepartments" Click="CreateDepartments_Click"
+                    Grid.Column="0" Grid.Row="1" >
+                <TextBlock TextAlignment="Center">
+                    Create<LineBreak/>Departments
+                </TextBlock>
+            </Button>
+            
+            <!--<Button x:Name="FillDepartments" Click="FillDepartments_Click"
+                    Grid.Column="1" Grid.Row="1">
+                <TextBlock TextAlignment="Center">
+                    Fill<LineBreak/>Departments
+                </TextBlock>
+            </Button>-->
+            
+        </Grid>
     </Grid>
 </Window>

@@ -61,7 +61,38 @@ namespace ADO_Lesson1
 			{
 				_connection.Close();
 			}
-
 		}
-	}	
+
+		#region Запити без повернення результатів
+		private void CreateDepartments_Click(object sender, RoutedEventArgs e)
+		{
+			// команда - ресурс для передачі SQL запиту до СУБД
+			SqlCommand cmd = new();
+			
+			// Обов'язкові параметри команди:
+			cmd.Connection = _connection;  // відкрите підключення
+
+			cmd.CommandText =              // та текст SQL запиту
+				@"CREATE TABLE Departments (
+	                Id	 UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+	                Name NVARCHAR(50) NOT NULL
+                )";
+
+			try
+			{
+				cmd.ExecuteNonQuery();  // NonQuery - без повернення рез-ту
+				MessageBox.Show("Create OK");
+			}
+			catch (SqlException ex)
+			{
+				MessageBox.Show(
+					ex.Message,
+					"Create error",
+					MessageBoxButton.OK,
+					MessageBoxImage.Stop);
+			}
+			cmd.Dispose();  // команда - unmanaged, потрібно вивільняти ресурс
+		}
+		#endregion
+	}
 }
