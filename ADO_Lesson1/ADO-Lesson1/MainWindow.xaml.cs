@@ -158,6 +158,36 @@ namespace ADO_Lesson1
 				MessageBox.Show(ex.Message);
 			}
 		}
+
+		private void CreateManagers_Click(object sender, RoutedEventArgs e)
+		{
+			String sql = File.ReadAllText("sql/create_managers.sql");
+			using SqlCommand cmd = new(sql, _connection);
+			try
+			{
+				cmd.ExecuteNonQuery();
+				MessageBox.Show("Create Managers OK");
+			}
+			catch (SqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void FillManagers_Click(object sender, RoutedEventArgs e)
+		{
+			String sql = File.ReadAllText("sql/fill_managers.sql");
+			using SqlCommand cmd = new(sql, _connection);
+			try
+			{
+				cmd.ExecuteNonQuery();
+				MessageBox.Show("Fill Managers OK");
+			}
+			catch (SqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
 		#endregion
 
 
@@ -166,6 +196,7 @@ namespace ADO_Lesson1
 		{
 			ShowMonitorDepartments();
 			ShowMonitorProducts();
+			ShowMonitorManagers();
 		}
 		private void ShowMonitorDepartments()
 		{
@@ -212,6 +243,28 @@ namespace ADO_Lesson1
 				MessageBox.Show(ex.Message, "Cast error",
 					MessageBoxButton.OK, MessageBoxImage.Exclamation);
 				StatusDepartments.Content = "---";
+			}
+		}
+		private void ShowMonitorManagers()
+		{
+			using SqlCommand cmd = new("SELECT COUNT(1) FROM Managers", _connection);
+			try
+			{
+				object res = cmd.ExecuteScalar();
+				int cnt = Convert.ToInt32(res);
+				StatusManagers.Content = cnt.ToString();
+			}
+			catch (SqlException ex)  // помилка запиту
+			{
+				MessageBox.Show(ex.Message, "SQL error",
+					MessageBoxButton.OK, MessageBoxImage.Stop);
+				StatusManagers.Content = "---";
+			}
+			catch (Exception ex)  // інші помилки (перетворення типів)
+			{
+				MessageBox.Show(ex.Message, "Cast error",
+					MessageBoxButton.OK, MessageBoxImage.Exclamation);
+				StatusManagers.Content = "---";
 			}
 		}
 

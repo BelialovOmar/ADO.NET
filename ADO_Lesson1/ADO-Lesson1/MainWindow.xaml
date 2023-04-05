@@ -63,6 +63,12 @@
             <Label Grid.Column="1" Grid.Row="4"
                    x:Name="StatusProducts" FontSize="16" />
 
+            <Label Grid.Column="0" Grid.Row="5"
+                   Content="Managers:" FontSize="16" />
+            <Label Grid.Column="1" Grid.Row="5"
+                   x:Name="StatusManagers" FontSize="16" />
+
+
 
         </Grid>
 
@@ -111,6 +117,20 @@
                     Fill<LineBreak/>Products
                 </TextBlock>
             </Button>
+
+            <Button x:Name="CreateManagers" Click="CreateManagers_Click"
+                    Grid.Column="0" Grid.Row="3" Margin="3">
+                <TextBlock TextAlignment="Center">
+                    Create<LineBreak/>Managers
+                </TextBlock>
+            </Button>
+            <Button x:Name="FillManagers" Click="FillManagers_Click"
+                    Grid.Column="1" Grid.Row="3"  Margin="3">
+                <TextBlock TextAlignment="Center">
+                    Fill<LineBreak/>Managers
+                </TextBlock>
+            </Button>
+
 
         </Grid>
     </Grid>
