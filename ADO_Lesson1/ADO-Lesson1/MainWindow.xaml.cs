@@ -54,7 +54,7 @@ namespace ADO_Lesson1
 				this.Close();
 			}
 
-			ShowMonitorDepartments();
+			ShowMonitor();
 		}
 
 		private void Window_Closed(object sender, EventArgs e)
@@ -162,6 +162,11 @@ namespace ADO_Lesson1
 
 
 		#region Запити з одним (скалярним) результатом 
+		private void ShowMonitor()
+		{
+			ShowMonitorDepartments();
+			ShowMonitorProducts();
+		}
 		private void ShowMonitorDepartments()
 		{
 			using SqlCommand cmd = new("SELECT COUNT(1) FROM Departments", _connection);
@@ -187,6 +192,29 @@ namespace ADO_Lesson1
 				StatusDepartments.Content = "---";
 			}
 		}
+		private void ShowMonitorProducts()
+		{
+			using SqlCommand cmd = new("SELECT COUNT(1) FROM Products", _connection);
+			try
+			{
+				object res = cmd.ExecuteScalar();
+				int cnt = Convert.ToInt32(res);
+				StatusProducts.Content = cnt.ToString();
+			}
+			catch (SqlException ex)  // помилка запиту
+			{
+				MessageBox.Show(ex.Message, "SQL error",
+					MessageBoxButton.OK, MessageBoxImage.Stop);
+				StatusDepartments.Content = "---";
+			}
+			catch (Exception ex)  // інші помилки (перетворення типів)
+			{
+				MessageBox.Show(ex.Message, "Cast error",
+					MessageBoxButton.OK, MessageBoxImage.Exclamation);
+				StatusDepartments.Content = "---";
+			}
+		}
+
 		#endregion
 	}
 }

@@ -57,7 +57,13 @@
                    Content="Departments:" FontSize="16" />
             <Label Grid.Column="1" Grid.Row="3"
                    x:Name="StatusDepartments" FontSize="16" />
-            
+
+            <Label Grid.Column="0" Grid.Row="4"
+                   Content="Products:" FontSize="16" />
+            <Label Grid.Column="1" Grid.Row="4"
+                   x:Name="StatusProducts" FontSize="16" />
+
+
         </Grid>
 
         <!-- Install Database -->
