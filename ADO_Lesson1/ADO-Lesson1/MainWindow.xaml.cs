@@ -280,26 +280,21 @@ namespace ADO_Lesson1
 			{
 				SqlDataReader reader = cmd.ExecuteReader();
 				String str = String.Empty;
-				// Передача даних відбувається по одному рядку
-				while (reader.Read())  // зчитує рядок, якщо немає - false
+				while (reader.Read())
 				{
-					// рядок зчитується у сам reader, дані з нього можна дістати
-					// а) через гет-тери
-					// б) через індексатори
-					str += reader.GetGuid(0)    // типізований Get-тер: рекомендовано
-						+ "  "                  // 
-						+ reader[1]             // індексатор - object
-						+ "\n";                 // відлік від 0 по порядку полів у результаті
-												// TODO: реалізувати скорочене відображення id типу a8f2...2c
+					String id = reader.GetGuid(0).ToString("N").Substring(0, 8);
+					String name = reader.GetString(1);
+					str += id + "  " + name + "\n"; 
 				}
 				ViewDepartments.Text = str;
-				reader.Close();   // !! Незакритий reader блокує інші команди до БД
+				reader.Close();
 			}
 			catch (SqlException ex)
 			{
 				MessageBox.Show(ex.Message);
 			}
 		}
+
 		#endregion
 
 	}
