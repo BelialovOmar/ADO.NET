@@ -53,6 +53,8 @@ namespace ADO_Lesson1
 				MessageBox.Show(ex.Message);
 				this.Close();
 			}
+
+			ShowMonitorDepartments();
 		}
 
 		private void Window_Closed(object sender, EventArgs e)
@@ -123,6 +125,34 @@ namespace ADO_Lesson1
 			}
 		}
 
+		#endregion
+
+		#region Запити з одним (скалярним) результатом 
+		private void ShowMonitorDepartments()
+		{
+			using SqlCommand cmd = new("SELECT COUNT(1) FROM Departments", _connection);
+			try
+			{
+				object res = cmd.ExecuteScalar();   // Виконання запиту + повернення
+													// "лівого-верхнього" результату з поверненої таблиці
+													// повертає типізовані дані (число, рядок, дату-час, тощо), але
+													// у формі object, відповідно для використання потрібне перетворення
+				int cnt = Convert.ToInt32(res);
+				StatusDepartments.Content = cnt.ToString();
+			}
+			catch (SqlException ex)  // помилка запиту
+			{
+				MessageBox.Show(ex.Message, "SQL error",
+					MessageBoxButton.OK, MessageBoxImage.Stop);
+				StatusDepartments.Content = "---";
+			}
+			catch (Exception ex)  // інші помилки (перетворення типів)
+			{
+				MessageBox.Show(ex.Message, "Cast error",
+					MessageBoxButton.OK, MessageBoxImage.Exclamation);
+				StatusDepartments.Content = "---";
+			}
+		}
 		#endregion
 	}
 }

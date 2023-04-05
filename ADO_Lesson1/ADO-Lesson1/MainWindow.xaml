@@ -24,28 +24,39 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <!-- Status-Monitor -->
         <Grid Grid.Column="0" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
                    Content="Status-Monitor" HorizontalAlignment="Center"
                    FontSize="26" FontWeight="DemiBold"/>
-            
             <Label Grid.Column="0" Grid.Row="1"
-                   Content="Connection:" FontSize="22" />
-            
+                   Content="MS SQL (local):" FontSize="16" />
             <Label Grid.Column="1" Grid.Row="1"
-                   x:Name="StatusConnection" FontSize="22" />
+                   x:Name="StatusConnection" FontSize="16" />
+
+            <Label Grid.Column="0" Grid.Row="2"
+                   Content="MySQL (remote):" FontSize="16" />
+            <Label Grid.Column="1" Grid.Row="2"
+                   x:Name="StatusMyConnection" FontSize="16" />
+
+            <Label Grid.Column="0" Grid.Row="3"
+                   Content="Departments:" FontSize="16" />
+            <Label Grid.Column="1" Grid.Row="3"
+                   x:Name="StatusDepartments" FontSize="16" />
             
         </Grid>
 
