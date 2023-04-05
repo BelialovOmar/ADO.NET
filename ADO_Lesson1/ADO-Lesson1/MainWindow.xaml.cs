@@ -55,6 +55,8 @@ namespace ADO_Lesson1
 			}
 
 			ShowMonitor();
+			ShowDepartmentsView();
+
 		}
 
 		private void Window_Closed(object sender, EventArgs e)
@@ -269,5 +271,36 @@ namespace ADO_Lesson1
 		}
 
 		#endregion
+
+		#region Запити із табличними результатами
+		private void ShowDepartmentsView()
+		{
+			using SqlCommand cmd = new("SELECT * FROM Departments", _connection);
+			try
+			{
+				SqlDataReader reader = cmd.ExecuteReader();
+				String str = String.Empty;
+				// Передача даних відбувається по одному рядку
+				while (reader.Read())  // зчитує рядок, якщо немає - false
+				{
+					// рядок зчитується у сам reader, дані з нього можна дістати
+					// а) через гет-тери
+					// б) через індексатори
+					str += reader.GetGuid(0)    // типізований Get-тер: рекомендовано
+						+ "  "                  // 
+						+ reader[1]             // індексатор - object
+						+ "\n";                 // відлік від 0 по порядку полів у результаті
+												// TODO: реалізувати скорочене відображення id типу a8f2...2c
+				}
+				ViewDepartments.Text = str;
+				reader.Close();   // !! Незакритий reader блокує інші команди до БД
+			}
+			catch (SqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+		#endregion
+
 	}
 }

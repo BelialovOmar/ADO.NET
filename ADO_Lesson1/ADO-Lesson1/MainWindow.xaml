@@ -133,5 +133,17 @@
 
 
         </Grid>
+        
+        <!--Departments view-->
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+            <Label Content="Departments" HorizontalAlignment="Center"
+                   FontSize="26" FontWeight="DemiBold"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Visible"
+                          VerticalScrollBarVisibility="Visible"
+                          MaxWidth="265" MaxHeight="170">
+                <TextBlock x:Name="ViewDepartments"/>
+            </ScrollViewer>
+        </StackPanel>
+
     </Grid>
 </Window>
