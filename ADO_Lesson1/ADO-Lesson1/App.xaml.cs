@@ -13,5 +13,6 @@ namespace ADO_Lesson1
 	/// </summary>
 	public partial class App: Application
 	{
+		public static readonly string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Admin\source\repos\BelialovOmar\ADO.NET\ADO_Lesson1\ADO-Lesson1\Database1.mdf;Integrated Security=True";
 	}
 }

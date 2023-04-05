@@ -32,7 +32,7 @@ namespace ADO_Lesson1
 			_connection = new();
 
 			// головний параметр - рядок підключення
-			_connection.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Admin\source\repos\BelialovOmar\ADO.NET\ADO_Lesson1\ADO-Lesson1\Database1.mdf;Integrated Security=True";
+			_connection.ConnectionString = App.ConnectionString;
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
