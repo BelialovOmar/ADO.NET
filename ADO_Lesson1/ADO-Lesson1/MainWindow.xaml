@@ -60,6 +60,7 @@
             
         </Grid>
 
+        <!-- Install Database -->
         <Grid Grid.Column="0" Grid.Row="1">
             
             <Grid.ColumnDefinitions>
@@ -91,7 +92,20 @@
                     Fill<LineBreak/>Departments
                 </TextBlock>
             </Button>
-            
+
+            <Button x:Name="CreateProducts" Click="CreateProducts_Click"
+                    Grid.Column="0" Grid.Row="2" Margin="3">
+                <TextBlock TextAlignment="Center">
+                    Create<LineBreak/>Products
+                </TextBlock>
+            </Button>
+            <Button x:Name="FillProducts" Click="FillProducts_Click"
+                    Grid.Column="1" Grid.Row="2"  Margin="3">
+                <TextBlock TextAlignment="Center">
+                    Fill<LineBreak/>Products
+                </TextBlock>
+            </Button>
+
         </Grid>
     </Grid>
 </Window>

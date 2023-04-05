@@ -94,10 +94,8 @@ namespace ADO_Lesson1
 					MessageBoxImage.Stop);
 			}
 			cmd.Dispose();  // команда - unmanaged, потрібно вивільняти ресурс
+			
 		}
-		#endregion
-
-		#region ДЗ #1
 		private void FillDepartments_Click(object sender, RoutedEventArgs e)
 		{
 			try
@@ -125,7 +123,43 @@ namespace ADO_Lesson1
 			}
 		}
 
+
+		private void CreateProducts_Click(object sender, RoutedEventArgs e)
+		{
+			String sql =
+				@"CREATE TABLE Products (
+	                Id			UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+	                Name		NVARCHAR(50) NOT NULL,
+	                Price		FLOAT  NOT NULL
+                )";
+			using SqlCommand cmd = new(sql, _connection);
+			try
+			{
+				cmd.ExecuteNonQuery();
+				MessageBox.Show("Create Products OK");
+			}
+			catch (SqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
+
+		private void FillProducts_Click(object sender, RoutedEventArgs e)
+		{
+			String sql = File.ReadAllText("sql/fill_products.sql") ;
+			using SqlCommand cmd = new(sql, _connection);
+			try
+			{
+				cmd.ExecuteNonQuery();
+				MessageBox.Show("Fill Products OK");
+			}
+			catch (SqlException ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
 		#endregion
+
 
 		#region Запити з одним (скалярним) результатом 
 		private void ShowMonitorDepartments()
